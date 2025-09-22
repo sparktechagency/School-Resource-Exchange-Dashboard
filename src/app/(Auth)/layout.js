@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import React from 'react';
+import authSlideImage from '../../assets/images/authside.png';
 
 export default function AuthLayout({ children }) {
   return (
@@ -20,7 +21,7 @@ export default function AuthLayout({ children }) {
       <div className="lg:w-[55%] mx-auto">
         <div className=" flex gap-10 justify-center items-center">
           <div>
-            <Image className="" src="/authside.png" alt="background" width={1200} height={1200} />
+            <Image className="" src={authSlideImage} alt="background" width={1200} height={1200} />
           </div>
           <div className="bg-transparent w-full">{children}</div>
         </div>
