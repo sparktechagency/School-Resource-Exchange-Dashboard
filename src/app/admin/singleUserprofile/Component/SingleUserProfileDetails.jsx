@@ -16,8 +16,8 @@ export default function SingleUserProfileDetails() {
   if (isLoading) {
     return (
       <div className="flex flex-col space-y-5  p-6 rounded-xl bg-white shadow-lg min-h-screen min-w-[400px]">
-        <Skeleton active />;
-        <Skeleton />
+        <Skeleton active />
+        <Skeleton active />
       </div>
     );
   }
