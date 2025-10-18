@@ -7,7 +7,6 @@ import { Search } from 'lucide-react';
 import { useState } from 'react';
 import Image from 'next/image';
 import CustomConfirm from '@/components/CustomConfirm/CustomConfirm';
-import { message } from 'antd';
 import { useRouter } from 'next/navigation';
 import { useChangeAssetStatusMutation, useGetAssetsQuery } from '@/redux/api/assetsApi';
 import moment from 'moment';
@@ -21,7 +20,7 @@ export default function PostApprovalTable() {
   const token = useSelector(selectToken);
 
   // get pending assest from api
-  const { data: pendingAssets } = useGetAssetsQuery(undefined, { skip: !token });
+  const { data: pendingAssets, isLoading } = useGetAssetsQuery(undefined, { skip: !token });
 
   const assets = pendingAssets?.data?.data;
 
@@ -165,6 +164,12 @@ export default function PostApprovalTable() {
         style={{ overflowX: 'auto' }}
         columns={columns}
         dataSource={data}
+        loading={isLoading}
+        pagination={{
+          pageSize: 10,
+          showSizeChanger: true,
+          pageSizeOptions: ['5', '10', '20', '50'],
+        }}
         scroll={{ x: '100%' }}
       ></Table>
     </ConfigProvider>

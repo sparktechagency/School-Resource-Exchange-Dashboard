@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import FormWrapper from "@/components/Form/FormWrapper";
-import UTextEditor from "@/components/Form/UTextEditor";
-import { Button } from "antd";
-import { Edit } from "lucide-react";
+import FormWrapper from '@/components/Form/FormWrapper';
+import UTextEditor from '@/components/Form/UTextEditor';
+import { Button } from 'antd';
+import { Edit } from 'lucide-react';
 
 export default function TermsConditionsContainer() {
   return (
@@ -16,12 +16,7 @@ export default function TermsConditionsContainer() {
           placeholder="Note: Enter details about your terms and conditions here."
         />
 
-        <Button
-          type="primary"
-          size="large"
-          className="w-full rounded-xl"
-          icon={<Edit size={18} />}
-        >
+        <Button type="primary" size="large" className="w-full rounded-xl" icon={<Edit size={18} />}>
           Save Changes
         </Button>
       </FormWrapper>

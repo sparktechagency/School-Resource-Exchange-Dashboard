@@ -3,7 +3,6 @@
 import { useSearchParams } from 'next/navigation';
 import PostCard from './post-card';
 import { useGetUserByIdQuery } from '@/redux/api/userApi';
-import { DNA } from 'react-loader-spinner';
 import { Empty, Skeleton } from 'antd';
 
 export default function SingleUserProfileDetails() {

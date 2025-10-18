@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack -p 5011",
+    "dev": "next dev --turbopack -p 5016",
     "build": "next build",
-    "start": "next start -p 5011",
+    "start": "next start -p 5016",
     "lint": "next lint"
   },
   "dependencies": {

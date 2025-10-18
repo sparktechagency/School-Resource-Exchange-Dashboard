@@ -25,7 +25,7 @@ const SidebarContainer = ({ collapsed }) => {
   const dispatch = useDispatch();
   const router = useRouter();
   const token = useSelector(selectToken);
-  const storedRole = token ? jwtDecode(token) : null; // Handle null token
+  const storedRole = token ? jwtDecode(token) : null;
   const [role, setRole] = useState(storedRole);
 
   // Updated Logout Handler
