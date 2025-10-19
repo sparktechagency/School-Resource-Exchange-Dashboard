@@ -36,11 +36,7 @@ const SidebarContainer = ({ collapsed }) => {
         dispatch(logout());
         // Show toast notification
         toast.success('Logout successful');
-        // Delay navigation to ensure state updates
         router.push('/login');
-        setTimeout(() => {
-          router.push('/login'); // Navigate to login page
-        }, 100); // Small delay to allow toast and state update
       } catch (error) {
         console.error('Logout error:', error);
         toast.error('Logout failed');
