@@ -23,7 +23,7 @@ export default function PostCard({ post, user, userId }) {
               <p className="text-xs text-gray-500">{moment(post?.createdAt).format('lll')}</p>
             </div>
           </div>
-          <Dropdown
+          {/* <Dropdown
             trigger={['click']}
             menu={{
               items: [
@@ -42,7 +42,7 @@ export default function PostCard({ post, user, userId }) {
                 <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" />
               </svg>
             </button>
-          </Dropdown>
+          </Dropdown> */}
         </div>
       </div>
 
