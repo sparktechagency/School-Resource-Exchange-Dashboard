@@ -34,6 +34,7 @@ const SidebarContainer = ({ collapsed }) => {
       try {
         // Dispatch logout action
         dispatch(logout());
+        router.refresh();
         // Show toast notification
         toast.success('Logout successful');
         // Delay navigation to ensure state updates

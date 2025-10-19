@@ -11,7 +11,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: '**',
+        hostname: 'flexi-works.fra1.digitaloceanspaces.com',
       },
     ],
   },

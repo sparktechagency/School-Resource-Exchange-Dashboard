@@ -38,6 +38,7 @@ export default function LoginForm() {
           })
         );
         router.push('/admin/dashboard');
+        window.location.reload();
       } else {
         toast.error(res?.message || 'Login failed: No access token received');
       }

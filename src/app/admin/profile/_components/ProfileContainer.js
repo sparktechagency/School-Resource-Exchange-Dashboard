@@ -27,16 +27,23 @@ export default function ProfileContainer() {
 
   // Handle image upload
   const handleImageUpload = async (event) => {
+    const toastId = toast.loading('Uploading image...');
     try {
       const file = event.target.files[0];
       const formData = new FormData();
       formData.append('image', file);
+
       const res = await uploadAdminImage(formData).unwrap();
+
+      // upload success
       if (res.success) {
+        toast.dismiss(toastId);
         toast.success('Image uploaded successfully');
         setSelectedImage(file);
       }
     } catch (error) {
+      // error
+      toast.dismiss(toastId);
       toast.error(error?.data?.message || 'Failed to upload image');
     }
   };
@@ -67,7 +74,7 @@ export default function ProfileContainer() {
         <section className="flex-center gap-x-3">
           <div className="relative w-max">
             <Image
-              src={selectedImage ? URL.createObjectURL(selectedImage) : adminImg}
+              src={selectedImage ? URL.createObjectURL(selectedImage) : admin?.image || adminImg}
               alt="Admin avatar"
               width={1200}
               height={1200}
@@ -94,7 +101,7 @@ export default function ProfileContainer() {
 
           <div>
             <h3 className="text-3xl font-semibold">{admin?.name}</h3>
-            <p className="font-medium text-primary-blue mt-1 text-lg">Administrator</p>
+            {/* <p className="font-medium text-primary-blue mt-1 text-lg">Administrator</p> */}
             {/* <p>Selected Image: {selectedImage ? selectedImage.name : 'None'}</p> */}
           </div>
         </section>

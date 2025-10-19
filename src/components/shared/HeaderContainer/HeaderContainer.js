@@ -66,7 +66,7 @@ export default function HeaderContainer({ collapsed, setCollapsed }) {
           className="flex items-center gap-x-2 text-black hover:text-primary-blue group"
         >
           <Image
-            src={userAvatar}
+            src={admin?.image || userAvatar}
             alt="Admin avatar"
             width={52}
             height={52}
