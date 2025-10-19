@@ -7,7 +7,7 @@ import Sider from 'antd/es/layout/Sider';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import user from '@/assets/icon/account.svg';
 import category from '@/assets/icon/category.svg';
 import dash from '@/assets/icon/Group.svg';
@@ -25,22 +25,44 @@ const SidebarContainer = ({ collapsed }) => {
   const dispatch = useDispatch();
   const router = useRouter();
   const token = useSelector(selectToken);
-  const storedRole = token ? jwtDecode(token) : null;
-  const [role, setRole] = useState(storedRole);
+  const [role, setRole] = useState(null);
 
-  // Updated Logout Handler
-  const onClick = async (e) => {
-    if (e.key === 'logout') {
+  // Decode token and set role on mount or token change
+  useEffect(() => {
+    if (token) {
       try {
-        // Dispatch logout action
-        dispatch(logout());
-        // Show toast notification
-        toast.success('Logout successful');
-        router.push('/login');
+        const decoded = jwtDecode(token);
+        setRole(decoded);
       } catch (error) {
-        console.error('Logout error:', error);
-        toast.error('Logout failed');
+        console.error('Token decoding error:', error);
+        setRole(null);
       }
+    } else {
+      setRole(null);
+    }
+  }, [token]);
+
+  // Logout Handler
+  const handleLogout = async () => {
+    try {
+      // Dispatch logout action and wait for it to complete
+      await dispatch(logout());
+      // Show success toast
+      toast.success('Logout successful');
+      // Navigate to login page
+      router.replace('/login');
+    } catch (error) {
+      console.error('Logout error:', error);
+      toast.error('Logout failed');
+      // Still navigate to login page on error to avoid being stuck
+      router.replace('/login');
+    }
+  };
+
+  // Handle menu item clicks
+  const onClick = (e) => {
+    if (e.key === 'logout') {
+      handleLogout();
     }
   };
 
@@ -84,7 +106,7 @@ const SidebarContainer = ({ collapsed }) => {
       {
         key: 'logout',
         icon: <Image src={logoutbtn} width={21} height={21} alt="" />,
-        label: <Link href="/login">Logout</Link>,
+        label: <span>Logout</span>, // Changed to span to prevent navigation via Link
       },
     ],
     Principal: [
@@ -106,7 +128,7 @@ const SidebarContainer = ({ collapsed }) => {
       {
         key: 'logout',
         icon: <Image src={logoutbtn} width={21} height={21} alt="" />,
-        label: <Link href="/login">Logout</Link>,
+        label: <span>Logout</span>, // Changed to span to prevent navigation via Link
       },
     ],
   };
