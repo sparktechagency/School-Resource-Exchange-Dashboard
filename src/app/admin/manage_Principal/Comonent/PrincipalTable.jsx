@@ -93,6 +93,7 @@ export default function PrincipalTable() {
       },
     },
     { title: 'Email', dataIndex: 'email' },
+    { title: 'District', dataIndex: 'district' },
 
     { title: 'Date', dataIndex: 'date' },
     {

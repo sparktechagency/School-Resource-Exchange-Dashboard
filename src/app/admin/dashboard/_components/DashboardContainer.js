@@ -109,9 +109,6 @@ export default function DashboardContainer() {
                 </div>
               </div>
             </div>
-            <h1 className="text-sm text-gray-500">
-              There are many passages of Lorem Ipsum available.
-            </h1>
           </div>
         ))}
       </section>
