@@ -1,12 +1,16 @@
 'use client';
 import CustomConfirm from '@/components/CustomConfirm/CustomConfirm';
 import { Button, Input, Table, Tag, Tooltip } from 'antd';
-import { Edit, Filter, PlusCircle, Search, Trash } from 'lucide-react';
+import { Edit, Filter, Lock, PlusCircle, Search, Trash, Unlock, UnlockIcon } from 'lucide-react';
 import Image from 'next/image';
 import React, { useState } from 'react';
 import AddDistricModal from './AddDistricModal';
 import EditDistricModal from './EditDristicModal';
-import { useDeleteDistrictMutation, useGetDistrictsQuery } from '@/redux/api/districts';
+import {
+  useBlockUnblockDristricMutation,
+  useDeleteDistrictMutation,
+  useGetDistrictsQuery,
+} from '@/redux/api/districts';
 import moment from 'moment';
 import toast from 'react-hot-toast';
 
@@ -24,6 +28,9 @@ const ManageDristricContainer = () => {
     searchText,
   });
 
+  // block unblock api handeler
+  const [blockUnblockDristric] = useBlockUnblockDristricMutation();
+
   // Dummy table data
   const data = dristric?.data?.data.map((item, inx) => ({
     key: inx + 1,
@@ -33,6 +40,7 @@ const ManageDristricContainer = () => {
     districtcode: item?.code,
     type: item?.type,
     id: item?._id,
+    status: item?.isBlocked === true ? 'Blocked' : 'Active',
   }));
 
   // delete dristric api handeler
@@ -46,6 +54,18 @@ const ManageDristricContainer = () => {
       }
     } catch (error) {
       toast.error(error?.data?.message || 'Failed to delete dristric');
+    }
+  };
+
+  // block unblock api handeler
+  const handleBlockUnblock = async (id) => {
+    try {
+      const res = await blockUnblockDristric(id).unwrap();
+      if (res?.success) {
+        toast.success(res?.message || 'Dristric blocked successfully');
+      }
+    } catch (error) {
+      toast.error(error?.data?.message || 'Failed to block dristric');
     }
   };
 
@@ -118,6 +138,21 @@ const ManageDristricContainer = () => {
       ),
     },
     {
+      title: 'Status',
+      dataIndex: 'status',
+      render: (value) => (
+        <Tag
+          className={
+            value === 'Blocked'
+              ? ' !text-sm font-bold !bg-red-500 border !text-white'
+              : '!text-sm font-bold !bg-green-500 border !text-white'
+          }
+        >
+          {value}
+        </Tag>
+      ),
+    },
+    {
       title: 'Action',
       render: (_, record) => (
         <div className="flex justify-start gap-x-3">
@@ -140,6 +175,25 @@ const ManageDristricContainer = () => {
             >
               <button>
                 <Trash color="#F16365" size={22} />
+              </button>
+            </CustomConfirm>
+          </Tooltip>
+          <Tooltip title="Block this district">
+            <CustomConfirm
+              title={record?.status === 'Blocked' ? 'Unblock this district' : 'Block this district'}
+              description={
+                record?.status === 'Blocked'
+                  ? 'Are you sure you want to unblock this district? This will allow everyone to access and modify it.'
+                  : "Are you sure to block this district?  if you block this district no one can't do anything with  this district "
+              }
+              onConfirm={() => handleBlockUnblock(record?.id)}
+            >
+              <button>
+                {record?.status === 'Blocked' ? (
+                  <Lock color="red" size={22} />
+                ) : (
+                  <Unlock color="#1B70A6" size={22} />
+                )}
               </button>
             </CustomConfirm>
           </Tooltip>

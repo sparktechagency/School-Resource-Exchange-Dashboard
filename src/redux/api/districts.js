@@ -40,6 +40,15 @@ const districtsApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ['Districts'],
     }),
+
+    // block dristric
+    blockUnblockDristric: build.mutation({
+      query: (id) => ({
+        url: `/districts/${id}`,
+        method: 'PATCH',
+      }),
+      invalidatesTags: ['Districts'],
+    }),
   }),
 });
 
@@ -49,4 +58,5 @@ export const {
   useCreateDristictMutation,
   useDeleteDistrictMutation,
   useUpdateDistrictMutation,
+  useBlockUnblockDristricMutation,
 } = districtsApi;

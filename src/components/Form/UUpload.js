@@ -1,7 +1,7 @@
-import { Button, Upload } from "antd";
-import { Form, Input } from "antd";
-import { UploadCloud } from "lucide-react";
-import { Controller } from "react-hook-form";
+import { Button, Upload } from 'antd';
+import { Form, Input } from 'antd';
+import { UploadCloud } from 'lucide-react';
+import { Controller } from 'react-hook-form';
 
 export default function UUpload({
   type,
@@ -29,14 +29,14 @@ export default function UUpload({
           rules={[
             {
               required: true,
-              message: "Please upload player photo",
+              message: 'Please upload player photo',
             },
           ]}
           style={{
-            textAlign: "center",
-            border: "2px dashed #D9D9D9",
-            paddingBlock: "30px",
-            borderRadius: "10px",
+            textAlign: 'center',
+            border: '2px dashed #D9D9D9',
+            paddingBlock: '30px',
+            borderRadius: '10px',
           }}
         >
           <Upload name="logo" listType="picture" maxCount={1}>

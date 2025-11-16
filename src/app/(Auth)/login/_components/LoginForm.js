@@ -34,7 +34,7 @@ export default function LoginForm() {
         toast.success('Login successful');
         dispatch(
           setUser({
-            token: res?.data?.accessToken,
+            token: res?.data?.accessToken,s
           })
         );
         router.push('/admin/dashboard');
