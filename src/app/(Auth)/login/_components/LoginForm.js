@@ -34,7 +34,7 @@ export default function LoginForm() {
         toast.success('Login successful');
         dispatch(
           setUser({
-            token: res?.data?.accessToken,s
+            token: res?.data?.accessToken,
           })
         );
         router.push('/admin/dashboard');
@@ -43,6 +43,7 @@ export default function LoginForm() {
         toast.error(res?.message || 'Login failed: No access token received');
       }
     } catch (error) {
+      console.log(error);
       toast.error(error?.data?.message || 'Failed to login');
     }
   };
