@@ -62,7 +62,7 @@ export default function LoginForm() {
           label="Email"
           placeholder="Enter your email"
           size="large"
-          className="!h-10 text-white"
+          className="!h-10 !text-black !mb-4"
           labelStyles={{ color: 'white' }}
         />
 
