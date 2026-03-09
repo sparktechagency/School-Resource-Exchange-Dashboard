@@ -9,7 +9,8 @@ import { usePathname } from 'next/navigation';
 import { Layout } from 'antd';
 import { AlignJustify } from 'lucide-react';
 import { useGetAdminQuery } from '@/redux/api/admin';
-import { useGetUnreadNotificationQuery } from '@/redux/api/notificationApi';26776
+import { useGetUnreadNotificationQuery } from '@/redux/api/notificationApi';
+26776;
 const { Header } = Layout;
 
 export default function HeaderContainer({ collapsed, setCollapsed }) {
@@ -70,7 +71,7 @@ export default function HeaderContainer({ collapsed, setCollapsed }) {
             alt="Admin avatar"
             width={52}
             height={52}
-            className="rounded-full border-2 p-0.5 border-primary-green group-hover:border"
+            className="rounded-full border-2 p-0.5 border-primary-green group-hover:border aspect-square"
           />
           <h4 className="text-lg font-semibold">{admin?.name || 'Admin'} </h4>
         </Link>
